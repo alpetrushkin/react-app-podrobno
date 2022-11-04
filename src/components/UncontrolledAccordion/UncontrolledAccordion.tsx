@@ -10,19 +10,20 @@ export const UncontrolledAccordion = (props: AccordionPropsType) => {
    const [collapsed, setCollapsed] = React.useState(true)
 
    return <>
-      <AccordionTitle titles={props.title}/> <button onClick={() => setCollapsed(!collapsed)}>TOGGLE</button>
+      <AccordionTitle titles={props.title} onClick={() => setCollapsed(!collapsed)}/>
       {collapsed && <AccordionBody/>}
    </>
 }
 
 type AccordionTitle = {
    titles: string
+   onClick: () => void
 }
 
 const AccordionTitle = (props: AccordionTitle) => {
    console.log('AccordionTitle rendering')
    return (
-         <h3>{props.titles}</h3>
+         <h3 style={{cursor: 'pointer'}} onClick={() => props.onClick()}>{props.titles}</h3>
    )
 }
 
