@@ -2,14 +2,16 @@ import React from "react";
 
 type AccordionPropsType = {
    title: string
-   collapsed: boolean
 }
 
-export const Accordion = (props: AccordionPropsType) => {
+export const UncontrolledAccordion = (props: AccordionPropsType) => {
    console.log('UncontrolledAccordion rendering')
+
+   const [collapsed, setCollapsed] = React.useState(true)
+
    return <>
-      <AccordionTitle titles={props.title}/>
-      {props.collapsed && <AccordionBody/>}
+      <AccordionTitle titles={props.title}/> <button onClick={() => setCollapsed(!collapsed)}>TOGGLE</button>
+      {collapsed && <AccordionBody/>}
    </>
 }
 
@@ -20,7 +22,7 @@ type AccordionTitle = {
 const AccordionTitle = (props: AccordionTitle) => {
    console.log('AccordionTitle rendering')
    return (
-      <h3>{props.titles}</h3>
+         <h3>{props.titles}</h3>
    )
 }
 
