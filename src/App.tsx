@@ -2,15 +2,22 @@ import React from 'react';
 import './App.css';
 import {OnOff} from "./components/OnOff/OnOff";
 import {Rating, RatingValueType} from "./components/Rating/Rating";
+import {Accordion} from "./components/Accordion/Accordion";
+import {UncontrolledOnOff} from "./components/UncontrolledOnOff/UncontrolledOnOff";
 
 function App() {
    const [ratingValue, setRatingValue] = React.useState<RatingValueType>(2);
+   const [accordionCollapsed, setAccordionCollapsed] = React.useState<boolean>(false)
+   const [switchOn, setSwitchOn] = React.useState(false)
 
    return (
+
       <div className="App">
-         <OnOff/>
+         <PageTitle title={'PageTitle rendering'}/>
+         <OnOff on={switchOn} callback={setSwitchOn}/>
          <Rating value={ratingValue} callback={setRatingValue}/>
-         <PageTitle title={'111'}/>
+         <Accordion title={'Menu'} collapsed={accordionCollapsed} callback={() => setAccordionCollapsed(!accordionCollapsed)}/>
+         <UncontrolledOnOff onChange={setSwitchOn}/> {switchOn.toString()}
       </div>
    );
 }
